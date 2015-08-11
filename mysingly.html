@@ -1,0 +1,33 @@
+<script>
+
+function list() {
+	this.start = null;
+	this.end = null;
+	this.makeNode = function() {
+		return {data:null,next:null};
+	};
+	this.add = function (data) {
+		if (this.start == null) {
+			this.start = this.makeNode();
+			this.end = this.start;
+		}
+		else {
+			this.end.next = this.makeNode();
+			this.end = this.end.next;
+		};
+		this.end.data = data;
+	};
+}
+
+var list= new list(); 
+for(var i=1;i<=1000000;i++){ 
+ list.add(i);
+};
+
+
+console.log(list);
+// for(var i=1;i<=10;i++){ 
+//  document.write(list(i);
+// };
+
+</script>
