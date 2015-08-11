@@ -1,6 +1,93 @@
 <script>
 
-document.write('We are going to create an object literal for our linked list');
+document.write('We are going to create an object constructor');
 document.write('<br><br>');
+
+function dog(name, breed, age, size, color) {
+	
+	// properties
+	this.name = name;
+	this.breed = breed;
+	this.age = age;
+	this.size = size;
+	this.color = color;
+	
+	// methods
+	/* Each of these methods are redundant because I could simply call [dog instance name].[property] to get a specific value, but they will serve the purposes of this example, just fine.*/
+	
+	this.getname = function () {
+		return this.name;
+	};
+
+	this.getbreed = function () {
+		return this.breed;
+	};
+
+	this.getage = function () {
+		return this.age;
+	};
+
+	this.getsize = function () {
+		return this.size;
+	};
+
+	this.getcolor = function () {
+		return this.color;
+	};
+}
+
+var wiley = new dog("Wiley", "English Bull Terrier", "4", "medium", "white with a black patch over his right eye");
+
+var noxi = new dog("Noxi", "English Bull Terrier", "3", "medium-small", "brown, white and black mix");
+
+var kennel = [];
+
+kennel.push(wiley);
+kennel.push(noxi);
+
+document.write("These are our dogs: ");
+document.write("<br><br>");
+
+for (var i = 0; i < kennel.length; i++) {
+	document.write("Dog #" + (i+1));
+	document.write("<br><br>");
+
+	document.write("Name: " + kennel[i].getname());
+	document.write("<br>");
+
+	document.write("Breed: " + kennel[i].getbreed());
+	document.write("<br>");
+	
+	document.write("Age: " + kennel[i].getage());
+	document.write("<br>");
+	
+	document.write("Size: " + kennel[i].getsize());
+	document.write("<br>");
+	
+	document.write("Color: " + kennel[i].getcolor());
+	document.write("<br>");
+	
+}
+
+// As an afterthought, add a trick property to false by default
+dog.prototype.knowsatrick = false;
+dog.prototype.trick = null;
+
+// Wiley does a trick
+wiley.knowsatrick = true;
+wiley.trick = "fist bump";
+
+document.write("<br><br>");
+document.write("Oh and I just remembered... These are their tricks:");
+document.write("<br><br>");
+
+for (i = 0; i < kennel.length; i++) {
+	document.write(kennel[i].getname() + " knows a trick? " + kennel[i].knowsatrick);
+	document.write('<br>');
+	document.write("Trick: " + kennel[i].trick);
+	document.write('<br><br>');
+}
+
+
 
 </script>
