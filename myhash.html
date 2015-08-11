@@ -1,0 +1,27 @@
+<script>
+
+function person(first, last, age, eyecolor) {
+	this.firstName = first;
+	this.lastName = last;
+	this.age = age;
+	this.eyeColor = eyecolor;
+}
+
+var key = function(obj){
+  // some unique object-dependent key
+  return obj.lastName + obj.firstName; // just an example
+};
+
+var dict = {};
+var shawn = new person("Shawn", "Shaw", "31", "blue-green" );
+var chad = new person("Chad", "Shaw", "30", "green" );
+
+dict[key(shawn)] = shawn;
+dict[key(chad)] = chad;
+
+console.log("Shawn object: ");
+console.log(dict[key(shawn)]);
+console.log("Chad object: ");
+console.log(dict[key(chad)]);
+
+</script>

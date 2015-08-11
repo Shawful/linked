@@ -1,0 +1,38 @@
+<script>
+
+/*  
+ * @author Shawn Shaw
+ * Function checks array to see if sum of any pair of numbers is equal to the magicsum
+ */
+
+
+// creaate array of numbers
+var array = [35, 25, 50];
+
+//set magic number
+var magic_sum = 60;
+
+//initialize variables
+var first_number, second_number;
+var temp_sum = 0;
+var result = false;
+
+// use a nested for loop to iterate through array
+var findMatch = function(sum) {
+	for (var i = 0; i < array.length; i++) {
+	    first_number = array[i];
+	    for(var j = i + 1; j < array.length; j++) {
+	        second_number = array[j];
+	        temp_sum = first_number + second_number;
+	        if (temp_sum == sum) {
+	            result = true;
+	        }
+	        // console.log(temp_sum);
+	    }
+	}
+	    return result;
+}
+document.write("Is there a match? ");
+document.write(findMatch(magic_sum));
+
+</script>
