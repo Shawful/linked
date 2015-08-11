@@ -1,0 +1,172 @@
+<script>
+/* utilizes prototypal inhereitance as inheritance pattern to avoid
+	situations where a reader may be unfamiliar with the keyword `this` */
+
+var makeLinkedList = function () {
+	/*
+	 * Creates and object with its
+	 * prototype referencing
+	 * methodsOfLinkedList
+	 */
+	var instanceofLinkedList = Object.create(methodsOfLinkedList);
+
+	/*
+	 * Sets the initial head of a list to null
+ 	 */
+ 	 instanceofLinkedList.head = null;
+
+ 	 /*
+	 * Sets the initial tail of a list to null
+ 	 */
+ 	 instanceofLinkedList.tail = null;
+
+ 	 /*
+	 * Returns an instance of a 
+	 * linked list
+ 	 */
+ 	 return instanceofLinkedList;
+};
+
+var methodsOfLinkedList = {
+	add: function(value) {
+	/*
+	 * Creates a new instance of a 
+	 * node.
+ 	 */	
+ 	 var newNode = makeNode(value);
+
+ 	 /*
+ 	  * Link the nodes
+ 	  */
+ 	  if (this.head && this.tail == null) {
+ 	  	this.head.next = newNode;
+ 	  	this.tail = newNode.next;
+ 	  }
+
+ 	 /*
+ 	  * If the list contains a
+ 	  * tail, then assign the new
+ 	  * node as the next node in
+ 	  * the list.
+ 	  */
+ 	  if (this.head) {
+ 	  	this.tail = newNode;
+ 	  }
+
+ 	 /*
+	 * If the list is empty,
+	 * then assign the new node
+	 * as the head of the list.
+ 	 */	
+ 	 if (!this.head) {
+ 	 	this.head = newNode;
+ 	 }
+
+	},
+
+	remove: function() {
+	
+	/*
+	 * Creates a variable that
+	 * references the current
+	 * head of a list.
+	 */
+	 var currentNode = this.head;
+
+	 /*
+	  * Assigns the head of the
+	  * list to the node next to
+	  * the current head.
+	  */
+	 this.head = currentNode.next;
+
+	 /*
+	  * Sets the initial head of
+	  * the list to null.
+	  */
+	 currentNode = null;
+	},
+
+	contains: function(value) {
+
+	/*
+     * Creates a variable that 
+     * references the current 
+     * head of a list.
+     */
+    var currentNode = this.head; 
+
+    /*
+     * Continues iteration while 
+     * there is a node in the 
+     * list.
+     */
+    while (currentNode) {
+
+      /*
+       * If the current node matches 
+       * the target value, then 
+       * return true. 
+       */
+      if (currentNode.data === value) {
+        return true;
+      }
+
+      /*
+       * Assigns currentNode to 
+       * reference the next node 
+       * in the list. 
+       */
+      currentNode = currentNode.next;
+     }
+
+     /*
+      * Returns false if there are 
+      * no matches in the list.
+      */
+    return false; 
+  }	
+};
+
+
+var makeNode = function(value) {
+
+	/*
+	 * Creates an object with the 
+	 * two properties of a node.
+	 */
+	 var instanceOfNode = {
+	 	data: value,
+	 	next: null
+	 };
+
+	 /*
+	  * Returns an instance of a 
+	  * node.
+	  */
+	  return instanceOfNode;
+};
+
+// var first = makeNode(5);
+// var second = makeNode(6);
+// var third = makeNode(7);
+
+var list = makeLinkedList();
+
+list.add(5);
+list.add(6);
+list.add(7);
+// list.add(second);
+// list.add(third);
+
+var head = list.head;
+var tail = list.tail;
+console.log(head);
+console.log(tail);
+
+document.write("Head value: " + head.data);
+document.write("<br><br>");
+// document.write("Head value: " + head.data.next.data);
+document.write("Tail value: " + tail.data);
+
+</script>
